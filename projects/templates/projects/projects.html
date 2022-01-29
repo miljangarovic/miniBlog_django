@@ -26,39 +26,47 @@
 
                 <div class="span12">
                     {% for post in projects %}
-                    <article>
-                        <div class="row">
+                        <article>
+                            <div class="row">
 
-                            <div class="span8">
-                                <div class="post-image">
-                                    <div class="post-heading">
-                                        <h3>{{ post.title }}</h3>
+                                <div class="span8">
+                                    <div class="post-image">
+                                        <div class="post-heading">
+                                            <h3>{{ post.title }}</h3>
+                                        </div>
+                                        <img src='
+                                                {% if 'https' in post.featured_image|slugify %}{{ post.featured_image }}{% else %}{{ post.imageURL }}{% endif %}'
+                                             alt=""/>
                                     </div>
-                                    <img src='{% if 'https' in post.featured_image|slugify  %}{{post.featured_image}}{% else %}{{ post.imageURL}}{% endif %}' alt=""/>
-                                </div>
 
-                            </div>
-                            <div class="span4">
-                                <div class="meta-post">
-                                    <ul>
-                                        <li><i class="icon-file"></i></li>
-                                        <li>By <a href="#" class="author">{{post.owner.name}}</a></li>
-                                        <li>On <a href="#" class="date">{{ post.created}}</a></li>
-                                        {% if request.user.is_authenticated and request.user.profile.id == post.owner.id %}
-                                            <br>
-                                        <li><a href="{% url 'delete-project' post.id %}" style="color: white;background-color: #e96b56;font-weight: 600;padding: 4px 10px 4px 10px;text-decoration: none;border-radius: 3px;">Delete</a></li>
-                                        <li><a href="{% url 'update-project' post.id %}" style="color: white;background-color: #17aaf6;font-weight: 600;padding: 4px 10px 4px 10px;text-decoration: none;border-radius: 3px;">Edit</a></li>
-                                        {% endif %}
-                                    </ul>
                                 </div>
-                                <div class="post-entry">
-                                    <p>
-                                        {{ post.description }}
-                                    </p>
+                                <div class="span4">
+                                    <div class="meta-post">
+                                        <ul>
+                                            <li><i class="icon-file"></i></li>
+                                            <li>By <a href="#" class="author">{{ post.owner.name }}</a></li>
+                                            <li>On <a href="#" class="date">{{ post.created }}</a></li>
+                                            {% if request.user.is_authenticated %}
+                                                {% if request.user.profile.id == post.owner.id %}
+                                                    <br>
+                                                    <li><a href="{% url 'delete-project' post.id %}"
+                                                           style="color: white;background-color: #e96b56;font-weight: 600;padding: 4px 10px 4px 10px;text-decoration: none;border-radius: 3px;">Delete</a>
+                                                    </li>
+                                                    <li><a href="{% url 'update-project' post.id %}"
+                                                           style="color: white;background-color: #17aaf6;font-weight: 600;padding: 4px 10px 4px 10px;text-decoration: none;border-radius: 3px;">Edit</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    <div class="post-entry">
+                                        <p>
+                                            {{ post.description }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
                     {% endfor %}
                 </div>
             </div>

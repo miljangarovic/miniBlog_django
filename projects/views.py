@@ -20,7 +20,7 @@ def projects(request):
         # 'query':search_query,
         # 'custom_range':custom_range,
     }
-    print(request.user.profile.id==projects[0].owner.id)
+
     return render(request,'projects/projects.html', context)
 
 def project(request,pk):
