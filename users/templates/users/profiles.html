@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block people_active %}active{% endblock %}
+
+{% block content %}
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <section class="inner-heading">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                        <li class="active">Bloggers</li>
+                    </ul>
+                    <h2>Bloggers</h2>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <section id="team" style="margin-top: 1rem;">
+                            <ul id="thumbs" class="team">
+                                {% for profile in profiles %}
+                                    <!-- Item Project and Filter Name -->
+                                    <li class="item-thumbs span3 design" data-id="id-0" data-type="design" >
+                                        <div class="team-box thumbnail">
+                                            <img src="{{profile.profile_image.url}}" alt=""/>
+                                            <div class="caption">
+                                                <h5>{{ profile.name }}</h5>
+                                                <p>
+                                                    from {{ profile.location }}
+                                                </p>
+                                                <ul class="social-network">
+                                                    <li><a href="{{profile.social_twitter}}" title="Twitter"><i
+                                                            class="icon-circled icon-bgdark icon-twitter"></i></a>
+                                                    </li>
+                                                    <li><a href="#" title="Google +"><i
+                                                            class="icon-circled icon-bgdark icon-google-plus"></i></a>
+                                                    </li>
+                                                    <li><a href="#" title="Dribbble"><i
+                                                            class="icon-circled icon-bgdark icon-dribbble"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- End Item Project -->
+                                {% endfor %}
+
+
+                            </ul>
+                        </section>
+                    </div>
+                </section>
+            <div id="pagination">
+              <span class="all">Page 1 of 3</span>
+              <span class="current">1</span>
+              <a href="#" class="inactive">2</a>
+              <a href="#" class="inactive">3</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
