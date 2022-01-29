@@ -32,7 +32,7 @@
                             <div class="span8">
                                 <div class="post-image">
                                     <div class="post-heading">
-                                        <h3><a href="#">{{ post.title }}</a></h3>
+                                        <h3><a href="{% url 'update-project' post.id %}">{{ post.title }}</a></h3>
                                     </div>
                                     <img src='{% if 'https' in post.featured_image|slugify  %}{{post.featured_image}}{% else %}{{ post.imageURL}}{% endif %}' alt=""/>
                                 </div>
