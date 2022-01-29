@@ -10,16 +10,18 @@ from django.contrib import messages
 # Create your views here.
 
 def projects(request):
-    projects,search_query = searchProjects(request)
 
-    custom_range,projects = paginationProjects(request,projects,3)
+    projects=Project.objects.all()
+    # projects,search_query = searchProjects(request)
+    #
+    # custom_range,projects = paginationProjects(request,projects,3)
     context = {
         'projects':projects,
-        'query':search_query,
-        'custom_range':custom_range,
+        # 'query':search_query,
+        # 'custom_range':custom_range,
     }
     print(projects)
-    return render(request,'projects/projects.html', {})
+    return render(request,'projects/projects.html', context)
 
 def project(request,pk):
     projectObj = Project.objects.get(id=pk)

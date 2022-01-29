@@ -62,20 +62,27 @@
                         <div class="navigation" style="height: 20px">
                             <nav>
                                 <ul class="nav topnav">
-                                    <li class=" {% block home_active %}{% endblock %}">
-                                        <a href="/"><i class="icon-home">Home</i></a>
-                                    </li>
                                     <li class="{% block posts_active %}{% endblock %}">
                                         <a href="/projects">Posts </a>
                                     </li>
-                                    {% if request.user.is_authenticated %}
-                                    <li class="{% block account_active %}{% endblock %}">
-                                        <a href="/account">Account </a>
-                                    </li>
-                                    {% endif %}
                                     <li class="{% block people_active %}{% endblock %}">
                                         <a href="/">Bloggers </a>
                                     </li>
+                                    {% if request.user.is_authenticated %}
+                                        <li class="{% block account_active %}{% endblock %}">
+                                            <a href="/posts/add">Add Post </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="/logout">Logout</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="">
+                                            <a href="/login">Login</a>
+                                        </li>
+                                       <li class="">
+                                            <a href="/register">Register</a>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </nav>
                         </div>

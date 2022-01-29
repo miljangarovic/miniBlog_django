@@ -10,9 +10,9 @@ urlpatterns = [
     # path('skill/update/<pk>',views.updateSkill,name='update-skill'),
     # path('skill/delete/<pk>', views.deleteSkill, name='delete-skill'),
     #
-    # path('login/',views.loginUser,name='login'),
-    # path('logout/', views.logoutUser, name='logout'),
-    # path('register/',views.registerUser,name='register'),
+    path('login/',views.loginUser,name='login'),
+    path('logout/', views.logoutUser, name='logout'),
+    path('register/',views.registerUser,name='register'),
     #
     #
     # path('account/inbox',views.inbox,name='inbox'),
