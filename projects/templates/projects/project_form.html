@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Project Form
+{% endblock %}
+
+{% block add_active %}active{% endblock %}
+{% block content %}
+
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <h1 style="text-align: center;margin-top: 2rem">Add new post</h1>
+                <br>
+
+                <form class="form" method="POST" enctype="multipart/form-data" style="text-align: center">
+                    {% csrf_token %}
+
+
+                    {% for field in form %}
+                        <div class="form__field">
+                        <label for="formInput#text">{{ field.label}}: </label>
+                            {{ field }}
+                        </div>
+
+                    {% endfor %}
+                    <div class="form__field">
+                        {% for tag in project.tags.all %}
+                            <div class="project-tag tag tag--pill tag--main" data-tag="{{ tag.id }}" data-project="{{ project.id }}">{{ tag.name }} &#215;</div>
+                        {% endfor %}
+                        
+                     <div class="form__field">
+                        <label for="formInput#text">Tags </label>
+                         <textarea name="newtags" class="input" placeholder="Add tags here" id="" cols="30" rows="3"></textarea>
+                        </div>
+
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let tags = document.getElementsByClassName('project-tag')
+        for (let i = 0; i < tags.length; i++) {
+            tags[i].addEventListener('click',(e)=>{
+                let tagId=e.target.dataset.tag
+                let projectId=e.target.dataset.project
+
+
+            })
+        }
+    </script>
+{% endblock %}

@@ -40,7 +40,7 @@ def createProject(request):
             project = form.save(commit=False)
             project.owner = request.user.profile
             project.save()
-            return redirect('account') #mogli smo i u form action da stavimo ovo
+            return redirect('/projects') #mogli smo i u form action da stavimo ovo
     context={'form':form}
     return render(request,'projects/project_form.html',context)
 
@@ -53,7 +53,7 @@ def updateProject(request,pk):
         form = ProjectForm(request.POST,request.FILES,instance=project) #da stalno ne bi pravio nove projecte
         if form.is_valid():
             project = form.save()
-            return redirect('account') #mogli smo i u form action da stavimo ovo
+            return redirect('/projects') #mogli smo i u form action da stavimo ovo
     context={'form':form,'project':project}
     return render(request,'projects/project_form.html',context)
 

@@ -69,8 +69,8 @@
                                         <a href="/">Bloggers </a>
                                     </li>
                                     {% if request.user.is_authenticated %}
-                                        <li class="{% block account_active %}{% endblock %}">
-                                            <a href="/posts/add">Add Post </a>
+                                        <li class="{% block add_active %}{% endblock %}">
+                                            <a href="/projects/project/create">Add Post </a>
                                         </li>
                                         <li class="">
                                             <a href="/logout">Logout</a>

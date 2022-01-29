@@ -34,7 +34,7 @@
                                     <div class="post-heading">
                                         <h3><a href="#">{{ post.title }}</a></h3>
                                     </div>
-                                    <img src={{post.featured_image}} alt=""/>
+                                    <img src='{% if 'https' in post.featured_image|slugify  %}{{post.featured_image}}{% else %}{{ post.imageURL}}{% endif %}' alt=""/>
                                 </div>
 
                             </div>
