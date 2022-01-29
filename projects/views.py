@@ -20,7 +20,7 @@ def projects(request):
         # 'query':search_query,
         # 'custom_range':custom_range,
     }
-    print(projects)
+    print(request.user.profile.id==projects[0].owner.id)
     return render(request,'projects/projects.html', context)
 
 def project(request,pk):
@@ -63,12 +63,7 @@ def updateProject(request,pk):
 def deleteProject(request,pk):
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
-    if request.method=='POST':
-        project.delete()
-        return redirect('account')
-    context={
-        'object':project
-    }
+    project.delete()
+    return redirect('/projects')
 
-    return render(request, 'delete_template.html', context)
 
