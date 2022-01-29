@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+    {% if page == 'register' %}
+
+    <div class="auth">
+      <div class="card">
+        <div class="auth__header text-center">
+          <a href="#">
+            <img src="{% static 'img/logo.png' %}" alt="icon" width="20%"/>
+          </a>
+          <h3>Account SignUp</h3>
+          <p>Create a new account</p>
+        </div>
+
+      <div style="; display: inline-block;width: 100% ">
+          <form action="{% url 'register' %}" method="post" class="form auth__form" style="text-align: center; padding: 10px;margin-top: 2rem">
+            {% csrf_token %}
+          <!-- Input:Text -->
+            {% for field in form %}
+             <div class="form__field">
+            <label for="formInput#text">{{ field.label }}: </label>
+                {{ field }}
+{#                {% if field.help_text %}#}
+{#                    <small>{{ field.help_text }}</small>#}
+{#                {% endif %}#}
+                {% for error in field.errors %}
+                    <p style="color: darkred">{{ error }}</p>
+                {% endfor %}
+
+            {% endfor %}
+
+          <div class="auth__actions">
+            <input class="btn btn--sub btn--lg" type="submit" value="Sign  In" />
+          </div>
+        </form>
+        <div class="auth__alternative">
+          <p>Already have an Account?</p>
+          <a href="{% url 'login' %}">Log In</a>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+
+    {% else %}
+
+ <div class="auth">
+      <div class="card">
+        <div class="auth__header text-center">
+          <a href="#">
+            <img src="{% static 'img/logo.png' %}" alt="icon" width="20%" />
+          </a>
+          <h3>Account Login</h3>
+          <p>Hello, Welcome Back!</p>
+        </div>
+
+        <form action="" class="form" method="post" style="text-align: center; padding: 10px;margin-top: 2rem">
+            {% csrf_token %}
+          <!-- Input:Email -->
+          <div class="form__field">
+            <label for="formInput#text">Username: </label>
+            <input
+              class="input input--text"
+              id="formInput#text"
+              type="text"
+              name="username"
+              placeholder="Enter your username..."
+            />
+          </div>
+
+          <!-- Input:Password -->
+          <div class="form__field">
+            <label for="formInput#password">Password: </label>
+            <input
+              class="input input--password"
+              id="formInput#passowrd"
+              type="password"
+              name="password"
+              placeholder="••••••••"
+            />
+          </div>
+          <div class="auth__actions">
+            <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+            <a href="{% url 'reset_password' %}">Forget Password?</a>
+          </div>
+        </form>
+        <div style="text-align: center">
+          <p>Don’t have an Account?</p>
+          <a href="{% url 'register' %}">Sign Up</a>
+        </div>
+          </div>
+
+      </div>
+    </div>
+
+    {% endif %}
+
+{% endblock %}
